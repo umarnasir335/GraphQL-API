@@ -1,0 +1,19 @@
+{
+    "name": "todo-graphql",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "w3cj <cj@null.computer>",
+    "license": "MIT",
+    "dependencies": {
+      "graphql-yoga": "^1.14.3"
+    },
+    "devDependencies": {
+      "nodemon": "^1.17.5"
+    }
+  }
