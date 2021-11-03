@@ -6,7 +6,12 @@ export default class home extends Component {
             <div>
                 
                 const homePage = { (hPage) => {
-                        
+                        var request = new XMLHttpRequest();
+
+                        // Initialize a request
+                        request.open('get', 'https://api.github.com/users/funchal')
+                        // Send it
+                        request.send()
                         }
                     }
 
