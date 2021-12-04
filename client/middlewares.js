@@ -26,6 +26,19 @@ const errorTypes = {
       errors: error.errors || undefined,
     });
   }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const title = titleInput.value;
+    const query = `
+    mutation {
+      createTodo(title: "${title}", done: false) {
+        id
+        title
+        done
+      }
+    }`;
+  
   
   module.exports = {
     notFound,
