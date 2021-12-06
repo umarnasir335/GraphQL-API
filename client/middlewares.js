@@ -26,6 +26,10 @@ const errorTypes = {
       errors: error.errors || undefined,
     });
   }
+  module.exports = {
+    notFound,
+    errorHandler,
+  };
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -38,9 +42,6 @@ const errorTypes = {
         done
       }
     }`;
+  }
   
   
-  module.exports = {
-    notFound,
-    errorHandler,
-  };
