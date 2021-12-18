@@ -1,31 +1,21 @@
 {
-    "collection" :
-    {
-      "version" : "1.0",
-      "href" : "http://localhost:1337/api/",
-      
-      "items" : 
-      [{
-        "href": "http://localhost:1337/api/5266722824890167",
-        "data": [
-          {
-            "name": "text",
-            "value": "tasting"
-          },
-          {
-            "name": "date_posted",
-            "value": "2013-01-09T15:58:22.674Z"
-          }
-        ]
-      }],
+  it('should respond with a 404 for a not found state', async () => {
+    await supertest(app)
+      .get('/api/v1/states/4200')
+      .expect('Content-Type', /json/)
+      .expect(404);
+  });
+  function references(table, tableName, notNullable = true, columnName = '') {
+    const definition = table
+      .integer(`${columnName || tableName}_id`)
+      .unsigned()
+      .references('id')
+      .inTable(tableName)
+      .onDelete('cascade');
   
-      "template" : {
-        "data" : [
-          {
-            "prompt" : "Text of message", 
-            "name" : "text", 
-            "value" : ""
-          }
-        ]
-      }
+    if (notNullable) {
+      definition.notNullable();
     }
+    return definition;
+  }
+}
