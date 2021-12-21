@@ -18,7 +18,20 @@ export default class test extends Component {
 
                         expect(response.body.message).toEqual(project.message);
                     });
-            });
+
+                    function references(table, tableName, notNullable = true, columnName = '') {
+                        const definition = table
+                          .integer(`${columnName || tableName}_id`)
+                          .unsigned()
+                          .references('id')
+                          .inTable(tableName)
+                          .onDelete('cascade');
+                      
+                        if (notNullable) {
+                          definition.notNullable();
+                        }
+                        return definition;
+                      }
             
                         describe('GET /api/v1/companies', () => {
                         it('should respond with an array of companies', async () => {
