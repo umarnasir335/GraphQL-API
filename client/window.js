@@ -34,4 +34,31 @@ function createWindow () {
       // when you should delete the corresponding element.
       mainWindow = null;
     });
+    
   }
+
+  function createHighlightWindow (message) {
+    if (highlightWindow) {
+      return;
+    }
+    // Create the browser window.
+    highlightWindow = new BrowserWindow({
+      title: 'Highlight Chat',
+      closable: true,
+      width: 1000,
+      height: 320,
+      frame: false,
+      x: 10,
+      y: 1080 - 300,
+      hasShadow: false,
+      transparent: true,
+      titleBarStyle: 'customButtonsOnHover',
+      minimizable: false,
+      maximizable: false,
+      alwaysOnTop: true,
+      backgroundColor: '#00FFFFFF',
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js')
+      }
+    });
+}
