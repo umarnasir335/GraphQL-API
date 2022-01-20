@@ -3,6 +3,20 @@ import React, { Component } from 'react'
 export default class logger extends Component {
     render() {
 
+        const onSubmit = async (data) => {
+            try {
+              setLoading(true);
+              data.latitude = location.latitude;
+              data.longitude = location.longitude;
+              await createLogEntry(data);
+              onClose();
+            } catch (error) {
+              console.error(error);
+              setError(error.message);
+              setLoading(false);
+            }
+          };
+
         function init(server) {
             const teamTimeoutMS = 30000;
             const io = socketIO(server);
