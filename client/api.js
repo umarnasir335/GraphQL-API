@@ -5,7 +5,9 @@ export default class api extends Component {
         return (
             <div>
                 
-try
+try{
+
+
 {
     // try to get the file (and with the file the last commit sha)
     var existingFile = await ghClient.Repository.Content.GetAllContentsByRef(owner, repo, targetFile, branch);
@@ -21,15 +23,14 @@ catch (Octokit.NotFoundException)
 }
 
 
-$ curl -i -H "Authorization: token ghp_16C7e42F292c6912E7710c838347Ae178B4a" \
-    -d '{ \
-        "name": "blog", \
-        "auto_init": true, \
-        "private": true, \
-        "gitignore_template": "nanoc" \
-      }' \
-    https://api.github.com/user/repos
-
-            </div>
-    }
+function errorHandler(err, req, res, next) {
+  /* eslint-enable no-unused-vars */
+  const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
+  res.status(statusCode);
+  res.json({
+    message: err.message,
+    stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
+    response: err.response ? err.response.data : null,
+  });
 }
+    }
