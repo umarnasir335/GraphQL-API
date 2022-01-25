@@ -26,6 +26,16 @@ const errorTypes = {
       errors: error.errors || undefined,
     });
   }
+  function errorHandler2(err, req, res, next) {
+    /* eslint-enable no-unused-vars */
+    const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
+    res.status(statusCode);
+    res.json({
+      message: err.message,
+      stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
+      response: err.response ? err.response.data : null,
+    });
+  }
   module.exports = {
     notFound,
     errorHandler,
