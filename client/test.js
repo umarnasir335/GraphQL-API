@@ -48,6 +48,17 @@ export default class test extends Component {
                               .expect('Content-Type', /json/)
                               .expect(404);
                           });
+                          form.addEventListener('submit', (event) => {
+                            event.preventDefault();
+                            const location = input.value;
+                            if (!location) {
+                              error.textContent = 'You must enter a location';
+                            } else {
+                              loadingImage.style.display = '';
+                              error.textContent = '';
+                              getWeather(location);
+                            }
+                          });
     });
             </div>
         
