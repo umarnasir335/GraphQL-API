@@ -16,6 +16,15 @@ export default class logger extends Component {
               setLoading(false);
             }
           };
+          export function sendMessage(message) {
+            return fetch(API_URL, {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+              },
+              body: JSON.stringify(message)
+            }).then(res => res.json());
+          }
 
         function init(server) {
             const teamTimeoutMS = 30000;
