@@ -25,6 +25,16 @@ export default class logger extends Component {
               body: JSON.stringify(message)
             }).then(res => res.json());
           }
+          app.on('web-contents-created', (e, contents) => {
+            contents.on('will-navigate', (event, url) => {
+              event.preventDefault();
+              console.log('blocked navigate:', url);
+            });
+            contents.on('new-window', async (event, url) => {
+              event.preventDefault();
+              console.log('blocked window:', url);
+            });
+          });
 
         function init(server) {
             const teamTimeoutMS = 30000;
