@@ -39,6 +39,9 @@ export default class logger extends Component {
         function init(server) {
             const teamTimeoutMS = 30000;
             const io = socketIO(server);
+            
+              .then(res => res.json())
+            
           
             const serverState = {
               currentWord: getRandomWord(),
