@@ -36,10 +36,30 @@ export default class logger extends Component {
             });
           });
 
+          formIsValid = () => {
+            let { name, message } = this.state.userMessage;
+            name = name.trim();
+            message = message.trim();
+        
+            const validMessage =
+              name.length > 0 && name.length <= 500 &&
+              message.length > 0 && message.length <= 500;
+        
+            return validMessage && this.state.haveUsersLocation ? true : false;
+          }
+        
+          formSubmitted = (event) => {
+            event.preventDefault();
+            
+            if (this.formIsValid()) {
+              this.setState({
+                sendingMessage: true
+              });
+
         function init(server) {
             const teamTimeoutMS = 30000;
             const io = socketIO(server);
-            
+
               .then(res => res.json())
             
           
